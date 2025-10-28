@@ -1,9 +1,9 @@
-Config Validator
+# Config Validator
 
 Config Validator is a lightweight and extensible framework for validating configuration files across different environments and storage systems.
 It’s designed to make large-scale configuration validation fast, maintainable, and observable — all while keeping setup simple.
 
-Overview
+# Overview
 
 The project supports:
 
@@ -21,7 +21,7 @@ Easy extensibility using Strategy and Decorator design patterns
 
 All core modules are fully type-hinted and tested, ensuring stability and readability.
 
-Project Structure
+# Project Structure
 src/config_validator/      # Core Python package
 tests/                     # Unit and integration tests
 ops/observability/         # Grafana, Loki, and Promtail setup
@@ -29,7 +29,7 @@ config/                    # Validation and storage configuration
 reports/                   # Generated JSON / NDJSON reports
 docs/                      # Documentation and references
 
-Key Features
+# Key Features
 
 Decorator-based rule system – Add or modify validation rules by simply applying a decorator.
 
@@ -45,7 +45,7 @@ Automatic logging – Decorators make it easy to log the start and end of any pr
 
 Comprehensive testing – Each component includes its own extendable test suite.
 
-Dashboards
+# Dashboards
 
 Two Grafana dashboards are included under ops/observability/grafana/dashboards/:
 
@@ -70,13 +70,13 @@ make test
 # Start observability stack
 cd ops/observability && docker compose up -d
 
-Technical Documentation
+# Technical Documentation
 
 For a detailed explanation of architecture, components, and dashboards,
 see ConfigValidator-Feature_and_Architecture_Document.pdf
  inside the docs/ directory.
 
-License
+# License
 
 This project is distributed for internal evaluation and demonstration purposes.
 All rights reserved © 2025.

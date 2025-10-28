@@ -1,0 +1,14 @@
+apiVersion: 1
+
+providers:
+  - name: 'Config Validator'
+    orgId: 1
+    folder: 'Config Validator'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/dashboards/Config Validator
+      foldersFromFilesStructure: true
+

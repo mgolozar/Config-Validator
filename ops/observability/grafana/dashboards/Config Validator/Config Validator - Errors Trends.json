@@ -1,0 +1,316 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 6,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 15,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time({job=\"validation\",type=\"file\",valid=\"false\"}[$__interval]))",
+                    "legendFormat": "invalid files",
+                    "queryType": "range",
+                    "refId": "A"
+                }
+            ],
+            "title": "Invalid Files Over Time",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 10
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 0,
+                "y": 8
+            },
+            "id": 2,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.4.5",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time({job=\"validation\",type=\"file\",valid=\"false\"}[24h]))",
+                    "queryType": "instant",
+                    "refId": "A"
+                }
+            ],
+            "title": "Invalid Files (last 24h)",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 15,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "insertNulls": false,
+                        "lineInterpolation": "linear",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": true,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 16,
+                "x": 8,
+                "y": 8
+            },
+            "id": 3,
+            "options": {
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time(({job=\"validation\",type=\"file\",valid=\"false\"} | json |= \"replicas\")[$__interval]))",
+                    "legendFormat": "replicas",
+                    "queryType": "range",
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time(({job=\"validation\",type=\"file\",valid=\"false\"} | json |= \"image\")[$__interval]))",
+                    "legendFormat": "image",
+                    "queryType": "range",
+                    "refId": "B"
+                },
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time(({job=\"validation\",type=\"file\",valid=\"false\"} | json |= \"service\")[$__interval]))",
+                    "legendFormat": "service",
+                    "queryType": "range",
+                    "refId": "C"
+                }
+            ],
+            "title": "Invalid Files by Keyword (replicas vs image vs service)",
+            "type": "timeseries"
+        }
+    ],
+    "schemaVersion": 39,
+    "tags": [
+        "config-validator"
+    ],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Config Validator - Errors and Trends",
+    "uid": "config-validator-dashboard",
+    "version": 2,
+    "weekStart": ""
+}

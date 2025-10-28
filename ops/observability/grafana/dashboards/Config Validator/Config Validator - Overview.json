@@ -1,0 +1,441 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": {
+                    "type": "grafana",
+                    "uid": "-- Grafana --"
+                },
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 8,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "orange",
+                                "value": 1
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 8,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.4.5",
+            "targets": [
+                {
+                    "expr": "sum(count_over_time({job=\"validation\",type=\"file\"}[24h]))",
+                    "queryType": "range",
+                    "refId": "A"
+                }
+            ],
+            "title": "Total Files (last 24h)",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 1
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 8,
+                "x": 8,
+                "y": 0
+            },
+            "id": 2,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.4.5",
+            "targets": [
+                {
+                    "expr": "sum(count_over_time({job=\"validation\",type=\"file\",valid=\"false\"}[24h]))",
+                    "queryType": "range",
+                    "refId": "A"
+                }
+            ],
+            "title": "Invalid Files (last 24h)",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 10
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 8,
+                "x": 16,
+                "y": 0
+            },
+            "id": 3,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showPercentChange": false,
+                "textMode": "auto",
+                "wideLayout": true
+            },
+            "pluginVersion": "10.4.5",
+            "targets": [
+                {
+                    "expr": "sum(sum_over_time(({job=\"validation\",type=\"file\"} | json | unwrap error_count)[24h]))",
+                    "queryType": "range",
+                    "refId": "A"
+                }
+            ],
+            "title": "Total Errors (last 24h)",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisBorderShow": false,
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "fillOpacity": 80,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 1,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 16,
+                "x": 0,
+                "y": 6
+            },
+            "id": 5,
+            "options": {
+                "barRadius": 0,
+                "barWidth": 0.97,
+                "fullHighlight": false,
+                "groupWidth": 0.7,
+                "legend": {
+                    "calcs": [],
+                    "displayMode": "list",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "orientation": "auto",
+                "showValue": "auto",
+                "stacking": "none",
+                "tooltip": {
+                    "mode": "single",
+                    "sort": "none"
+                },
+                "xTickLabelRotation": 0,
+                "xTickLabelSpacing": 0
+            },
+            "pluginVersion": "10.4.5",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "editorMode": "code",
+                    "expr": "sum(count_over_time(({job=\"validation\",type=\"file\",valid=\"false\"} | json |= \"replicas\")[$__interval]))",
+                    "legendFormat": "replicas",
+                    "queryType": "range",
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time(({job=\"validation\",type=\"file\",valid=\"false\"} | json |= \"image\")[$__interval]))",
+                    "legendFormat": "image",
+                    "queryType": "range",
+                    "refId": "B"
+                },
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "expr": "sum(count_over_time(({job=\"validation\",type=\"file\",valid=\"false\"} | json |= \"service\")[$__interval]))",
+                    "legendFormat": "service",
+                    "queryType": "range",
+                    "refId": "C"
+                }
+            ],
+            "title": "Invalid by Keyword (replicas vs image vs service)",
+            "type": "barchart"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 8,
+                "x": 16,
+                "y": 6
+            },
+            "id": 8,
+            "options": {
+                "minVizHeight": 75,
+                "minVizWidth": 75,
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "sizing": "auto"
+            },
+            "pluginVersion": "10.4.5",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "editorMode": "code",
+                    "expr": "sum by (day) (count_over_time({job=\"validation\", valid=\"false\"}[1h]))",
+                    "legendFormat": "Invalid Files",
+                    "queryType": "range",
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "loki",
+                        "uid": "P8E80F9AEF21F6940"
+                    },
+                    "editorMode": "code",
+                    "expr": "sum by (day) (count_over_time({job=\"validation\", valid=\"true\"}[1h]))",
+                    "hide": false,
+                    "legendFormat": "Valid Files",
+                    "queryType": "range",
+                    "refId": "B"
+                }
+            ],
+            "title": "Panel Title",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+                "type": "loki",
+                "uid": "P8E80F9AEF21F6940"
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 24,
+                "x": 0,
+                "y": 14
+            },
+            "id": 7,
+            "options": {
+                "dedupStrategy": "none",
+                "enableLogDetails": true,
+                "prettifyLogMessage": false,
+                "showCommonLabels": true,
+                "showLabels": false,
+                "showTime": false,
+                "sortOrder": "Descending",
+                "wrapLogMessage": true
+            },
+            "targets": [
+                {
+                    "expr": "{job=\"validation\",type=\"file\"}",
+                    "queryType": "range",
+                    "refId": "A"
+                }
+            ],
+            "title": "Latest File States (drill-down)",
+            "type": "logs"
+        }
+    ],
+    "schemaVersion": 39,
+    "tags": [
+        "config-validator",
+        "overview"
+    ],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-2d",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Config Validator - Overview",
+    "uid": "config-validator-overview",
+    "version": 3,
+    "weekStart": ""
+}

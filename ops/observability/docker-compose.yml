@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  loki:
+    image: grafana/loki:2.9.3
+    command: -config.file=/etc/loki/loki-config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml:ro
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:10.4.5
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    depends_on:
+      - loki
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:2.9.3
+    command: -config.expand-env=true -config.file=/etc/promtail/promtail-config.yml
+    depends_on:
+      - loki
+    environment:
+      - LOKI_URL=http://loki:3100/loki/api/v1/push
+    volumes:
+      - ./promtail-config.yml:/etc/promtail/promtail-config.yml:ro
+      - ${REPORTS_DIR:-../../reports}:/var/lib/reports:ro
+    restart: unless-stopped
